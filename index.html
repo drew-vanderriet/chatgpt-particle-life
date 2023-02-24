@@ -1,16 +1,26 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+<head>
     <meta charset="UTF-8">
-    <title>Particle Life Project</title>
-    <style>
-      canvas {
-        border: 1px solid black;
-      }
-    </style>
-  </head>
-  <body>
-    <canvas id="canvas"></canvas>
+    <title>Particle Life</title>
+    <!-- Add the p5.js library from a CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0"></script>
+    <!-- Add your own JavaScript file -->
     <script src="particles.js"></script>
-  </body>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        canvas {
+            display: block;
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas"></canvas>
+</body>
 </html>
