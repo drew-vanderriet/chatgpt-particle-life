@@ -1,4 +1,12 @@
 class Particle {
+  static Colors = {
+    RED: [255, 0, 0],
+    BLUE: [0, 0, 255],
+    DARK_GREEN: [0, 100, 0],
+    ORANGE: [255, 165, 0],
+    PURPLE: [128, 0, 128]
+  };
+  
   constructor(x, y, c, attraction, repulsion) {
     this.position = createVector(x, y);
     this.velocity = createVector(random(-1, 1), random(-1, 1));
