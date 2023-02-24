@@ -3,7 +3,7 @@ let particles = [];
 function setup() {
   createCanvas(windowWidth, windowHeight);
   // Add 50 red particles at random locations
-  for (let i = 0; i < 150; i++) {
+  for (let i = 0; i < 50; i++) {
     let x = random(width);
     let y = random(height);
     let randomColor = random(Object.values(Particle.COLORS));
