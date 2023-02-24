@@ -1,9 +1,9 @@
 class Particle {
-  constructor(x, y, color, attraction, repulsion) {
+  constructor(x, y, c, attraction, repulsion) {
     this.position = createVector(x, y);
     this.velocity = createVector(random(-1, 1), random(-1, 1));
     this.acceleration = createVector();
-    this.color = color;
+    this.color = c;
     this.attraction = attraction;
     this.repulsion = repulsion;
     this.radius = 5;
