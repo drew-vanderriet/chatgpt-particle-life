@@ -16,6 +16,14 @@ class Particle {
     this.baseForce = 10000;
     this.repulsiveWeight = -10;
   }
+  
+  pos(axis) {
+    if (axis == 0) {
+      return this.position.x;
+    } else if (axis == 1) {
+      return this.position.y;
+    }
+  }
 
   update() {
     this.velocity.add(this.acceleration);
