@@ -19,7 +19,7 @@ class KDTree {
 
     const axis = depth % 2;
 
-    points.sort((a, b) => a.position[axis] - b.position[axis]);
+    points.sort((a, b) => a.position[axis + 1] - b.position[axis + 1]);
 
     const medianIndex = Math.floor(points.length / 2);
     const median = points[medianIndex];
