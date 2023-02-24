@@ -50,7 +50,7 @@ class KDTree {
     }
 
     const axis = depth % 2;
-    const diff = point.position[axis] - node.point.position[axis];
+    const diff = point.pos(axis) - node.point.pos(axis);
 
     if (diff <= radius) {
       this.searchHelper(point, node.left, depth + 1, radius, neighbors);
