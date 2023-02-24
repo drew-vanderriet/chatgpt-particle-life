@@ -84,7 +84,7 @@ class Particle {
   }
 
   draw() {
-    fill(paintColor());
+    fill(this.paintColor());
     noStroke(); // Remove the outline
     ellipse(this.position.x, this.position.y, this.radius, this.radius);
   }
