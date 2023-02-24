@@ -13,7 +13,7 @@ class Particle {
     this.acceleration = createVector();
     this.color = c;
     this.radius = 15;
-    this.baseForce = 1000;
+    this.baseForce = 100000;
   }
 
   update() {
