@@ -1,3 +1,5 @@
+const KDTree = require('./kdTree.js');
+
 let particles = [];
 
 function setup() {
@@ -14,16 +16,22 @@ function setup() {
 
 function draw() {
   background(220);
-  
-  // interact all particles with each other
+
+  // Build the KD tree
+  const tree = new KDTree(particles, ['x', 'y']);
+
+  // interact particles with their neighbors
   for (let i = 0; i < particles.length; i++) {
-    for (let j = 0; j < particles.length; j++) {
-      if (i !== j) {
-        particles[i].interact(particles[j]);
+    const particle = particles[i];
+    const neighbors = tree.nearest(particle, 500, true);
+
+    for (let j = 0; j < neighbors.length; j++) {
+      if (particle !== neighbors[j]) {
+        particle.interact(neighbors[j]);
       }
     }
   }
-  
+
   // Update and draw all particles
   for (let particle of particles) {
     particle.update();
