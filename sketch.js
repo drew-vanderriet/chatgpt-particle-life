@@ -6,9 +6,9 @@ function setup() {
   for (let i = 0; i < 50; i++) {
     let x = random(width);
     let y = random(height);
-    let colorNames = Object.keys(Particle.Colors);
+    let colorNames = Object.keys(Particle.COLORS);
     let randomColorName = colorNames[Math.floor(random(colorNames.length))];
-    let randomColor = Particle.Colors[randomColorName];
+    let randomColor = Particle.COLORS[randomColorName];
     let particle = new Particle(x, y, randomColor);
     particles.push(particle);
   }
