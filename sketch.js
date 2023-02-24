@@ -15,6 +15,15 @@ function setup() {
 function draw() {
   background(220);
   
+  // interact all particles with each other
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = 0; j < particles.length; j++) {
+      if (i !== j) {
+        particles[i].interact(particles[j]);
+      }
+    }
+  }
+  
   // Update and draw all particles
   for (let particle of particles) {
     particle.update();
