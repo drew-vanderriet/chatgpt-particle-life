@@ -43,9 +43,7 @@ class KDTree {
       return;
     }
 
-    const dx = point.position[0] - node.point.position[0];
-    const dy = point.position[1] - node.point.position[1];
-    const distance = Math.sqrt(dx * dx + dy * dy);
+    const distance = point.position.dist(node.point.position);
 
     if (distance <= radius) {
       neighbors.push(node.point);
