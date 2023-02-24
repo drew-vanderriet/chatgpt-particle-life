@@ -14,6 +14,7 @@ class Particle {
     this.color = c;
     this.radius = 10;
     this.baseForce = 10000;
+    this.repulsiveWeight = -10;
   }
 
   update() {
@@ -78,7 +79,7 @@ class Particle {
     const weight = weights[color1 + color2] || 0; // Default weight is 0 if color combination not defined
 
     if (distance > 0 && distance < 20) {
-      const strength = this.baseForce * -50 / (distance * distance * distance); // all particles repel at close distances
+      const strength = this.baseForce * this.repulsiveWeight / (distance * distance * distance); // all particles repel at close distances
       const force = p5.Vector.sub(other.position, this.position);
       force.setMag(strength);
       this.applyForce(force);
