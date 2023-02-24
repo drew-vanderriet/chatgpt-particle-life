@@ -13,6 +13,11 @@ function setup() {
 
 function draw() {
   background(220);
+  // test drawing
+  fill(255, 0, 0); // Set fill color to red
+  noStroke(); // Remove the outline
+  ellipse(width/2, height/2, 20, 20); // Draw a red dot at the center of the canvas
+
   
   // Update and draw all particles
   for (let particle of particles) {
