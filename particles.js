@@ -12,7 +12,7 @@ class Particle {
     this.velocity = createVector(random(-10, 10), random(-10, 10));
     this.acceleration = createVector();
     this.color = c;
-    this.radius = 15;
+    this.radius = 10;
     this.baseForce = 10000;
   }
 
@@ -77,8 +77,11 @@ class Particle {
     // Get the weight for the combination of colors, or if they are the same color
     const weight = weights[color1 + color2] || 0; // Default weight is 0 if color combination not defined
 
-    if (distance > 0 && distance < 50) {
+    if (distance > 0 && distance < 20) {
       const strength = this.baseForce * -50 / (distance * distance * distance); // all particles repel at close distances
+      const force = p5.Vector.sub(other.position, this.position);
+      force.setMag(strength);
+      this.applyForce(force);
     } else if (distance > 0 && distance < 500) {
       const strength = this.baseForce * weight / (distance * distance);
       const force = p5.Vector.sub(other.position, this.position);
