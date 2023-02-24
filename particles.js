@@ -40,7 +40,7 @@ class Particle {
     }
   }
 
-  display() {
+  draw() {
     fill(this.color);
     ellipse(this.position.x, this.position.y, this.radius, this.radius);
   }
