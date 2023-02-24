@@ -13,7 +13,7 @@ class Particle {
     this.acceleration = createVector();
     this.color = c;
     this.radius = 15;
-    this.baseForce = 100000;
+    this.baseForce = 10;
   }
 
   update() {
@@ -47,20 +47,25 @@ class Particle {
 
     // Predefined weights for each color combination
     const weights = {
+      [Particle.COLORS.RED + Particle.COLORS.RED]: 1.0,
       [Particle.COLORS.RED + Particle.COLORS.BLUE]: -0.5,
       [Particle.COLORS.RED + Particle.COLORS.DARK_GREEN]: -0.2,
       [Particle.COLORS.RED + Particle.COLORS.ORANGE]: 0.7,
       [Particle.COLORS.RED + Particle.COLORS.PURPLE]: 0.9,
+      [Particle.COLORS.BLUE + Particle.COLORS.BLUE]: -0.5,
       [Particle.COLORS.BLUE + Particle.COLORS.DARK_GREEN]: 0.4,
       [Particle.COLORS.BLUE + Particle.COLORS.ORANGE]: -0.1,
       [Particle.COLORS.BLUE + Particle.COLORS.PURPLE]: -0.8,
+      [Particle.COLORS.DARK_GREEN + Particle.COLORS.DARK_GREEN]: 0.7,
       [Particle.COLORS.DARK_GREEN + Particle.COLORS.ORANGE]: 0.3,
       [Particle.COLORS.DARK_GREEN + Particle.COLORS.PURPLE]: -0.6,
+      [Particle.COLORS.ORANGE + Particle.COLORS.ORANGE]: 0.4,
       [Particle.COLORS.ORANGE + Particle.COLORS.PURPLE]: 0.1,
+      [Particle.COLORS.PURPLE + Particle.COLORS.PURPLE]: -0.7,
     };
 
-    const key = [color1, color2].sort().join(" + ");
-    const weight = weights[key] || 0; // Default weight is 0 if color combination not defined
+    // Get the weight for the combination of colors, or if they are the same color
+    const weight = weights[color1 + color2] || weights[color2 + color1] || 0; // Default weight is 0 if color combination not defined
 
     if (distance > 0 && distance < 500) {
       const strength = this.baseForce * weight / (distance * distance);
