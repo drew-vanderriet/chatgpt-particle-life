@@ -30,11 +30,3 @@ function draw() {
     particle.draw();
   }
 }
-
-const baseForceSlider = document.getElementById("baseForce");
-const baseForceLabel = document.getElementById("baseForceLabel");
-
-baseForceSlider.addEventListener("input", () => {
-  baseForce = parseInt(baseForceSlider.value);
-  baseForceLabel.textContent = baseForce;
-});
