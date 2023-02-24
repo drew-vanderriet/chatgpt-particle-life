@@ -1,5 +1,3 @@
-const KDTree = require('./kdTree.js');
-
 let particles = [];
 
 function setup() {
