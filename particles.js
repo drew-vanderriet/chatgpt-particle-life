@@ -13,7 +13,7 @@ class Particle {
     this.acceleration = createVector();
     this.color = c;
     this.radius = 15;
-    this.forceMultiplier = 3;
+    this.baseForce = 1000;
   }
 
   update() {
@@ -50,10 +50,10 @@ class Particle {
     const weight = weights[key] || 0; // Default weight is 0 if color combination not defined
 
     if (distance > 0 && distance < 500) {
-      const strength = weight / (distance * distance);
+      const strength = this.baseForce * weight / (distance * distance);
       const force = p5.Vector.sub(other.position, this.position);
       force.setMag(strength);
-      this.applyForce(force * this.forceMultiplier);
+      this.applyForce(force);
     }
   }
   
