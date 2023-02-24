@@ -54,3 +54,6 @@ class KDTree {
     }
   }
 }
+
+module.exports = KDTree;
+
