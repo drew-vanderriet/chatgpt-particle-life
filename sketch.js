@@ -1,7 +1,7 @@
 let particles = [];
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(windowWidth, windowHeight);
   // Add 50 red particles at random locations
   for (let i = 0; i < 50; i++) {
     let x = random(width);
@@ -13,11 +13,6 @@ function setup() {
 
 function draw() {
   background(220);
-  
-  // test drawing
-  fill(0, 255, 0); // Set fill color to red
-  ellipse(50, 50, 20, 20); // Draw a red dot at the center of the canvas
-
   
   // Update and draw all particles
   for (let particle of particles) {
