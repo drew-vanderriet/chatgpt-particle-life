@@ -1,3 +1,12 @@
+class KDNode {
+  constructor(point) {
+    this.point = point;
+    this.left = null;
+    this.right = null;
+  }
+}
+
+
 class KDTree {
   constructor(points) {
     this.root = this.buildTree(points, 0);
