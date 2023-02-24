@@ -47,28 +47,38 @@ class Particle {
 
     // Predefined weights for each color combination
     const weights = {
-      [Particle.COLORS.RED + Particle.COLORS.RED]: 1.0,
-      [Particle.COLORS.RED + Particle.COLORS.BLUE]: -0.5,
-      [Particle.COLORS.RED + Particle.COLORS.DARK_GREEN]: -0.2,
-      [Particle.COLORS.RED + Particle.COLORS.ORANGE]: 0.7,
-      [Particle.COLORS.RED + Particle.COLORS.PURPLE]: 0.9,
-      [Particle.COLORS.BLUE + Particle.COLORS.BLUE]: -0.5,
-      [Particle.COLORS.BLUE + Particle.COLORS.DARK_GREEN]: 0.4,
-      [Particle.COLORS.BLUE + Particle.COLORS.ORANGE]: -0.1,
-      [Particle.COLORS.BLUE + Particle.COLORS.PURPLE]: -0.8,
-      [Particle.COLORS.DARK_GREEN + Particle.COLORS.DARK_GREEN]: 0.7,
-      [Particle.COLORS.DARK_GREEN + Particle.COLORS.ORANGE]: 0.3,
-      [Particle.COLORS.DARK_GREEN + Particle.COLORS.PURPLE]: -0.6,
-      [Particle.COLORS.ORANGE + Particle.COLORS.ORANGE]: 0.4,
-      [Particle.COLORS.ORANGE + Particle.COLORS.PURPLE]: 0.1,
-      [Particle.COLORS.PURPLE + Particle.COLORS.PURPLE]: -0.7,
-    };
+    [Particle.COLORS.RED + Particle.COLORS.RED]: -0.3,
+    [Particle.COLORS.RED + Particle.COLORS.BLUE]: -0.5,
+    [Particle.COLORS.RED + Particle.COLORS.DARK_GREEN]: -0.2,
+    [Particle.COLORS.RED + Particle.COLORS.ORANGE]: 0.7,
+    [Particle.COLORS.RED + Particle.COLORS.PURPLE]: 0.9,
+    [Particle.COLORS.BLUE + Particle.COLORS.BLUE]: 0.1,
+    [Particle.COLORS.BLUE + Particle.COLORS.RED]: -0.6,
+    [Particle.COLORS.BLUE + Particle.COLORS.DARK_GREEN]: 0.4,
+    [Particle.COLORS.BLUE + Particle.COLORS.ORANGE]: -0.1,
+    [Particle.COLORS.BLUE + Particle.COLORS.PURPLE]: -0.8,
+    [Particle.COLORS.DARK_GREEN + Particle.COLORS.DARK_GREEN]: -0.5,
+    [Particle.COLORS.DARK_GREEN + Particle.COLORS.RED]: -0.3,
+    [Particle.COLORS.DARK_GREEN + Particle.COLORS.BLUE]: 0.4,
+    [Particle.COLORS.DARK_GREEN + Particle.COLORS.ORANGE]: 0.3,
+    [Particle.COLORS.DARK_GREEN + Particle.COLORS.PURPLE]: -0.6,
+    [Particle.COLORS.ORANGE + Particle.COLORS.ORANGE]: -0.1,
+    [Particle.COLORS.ORANGE + Particle.COLORS.RED]: -0.7,
+    [Particle.COLORS.ORANGE + Particle.COLORS.BLUE]: -0.2,
+    [Particle.COLORS.ORANGE + Particle.COLORS.DARK_GREEN]: 0.1,
+    [Particle.COLORS.ORANGE + Particle.COLORS.PURPLE]: 0.1,
+    [Particle.COLORS.PURPLE + Particle.COLORS.PURPLE]: 0.3,
+    [Particle.COLORS.PURPLE + Particle.COLORS.RED]: -0.5,
+    [Particle.COLORS.PURPLE + Particle.COLORS.BLUE]: -0.8,
+    [Particle.COLORS.PURPLE + Particle.COLORS.DARK_GREEN]: -0.6,
+    [Particle.COLORS.PURPLE + Particle.COLORS.ORANGE]: 0.1,
+  };
 
     // Get the weight for the combination of colors, or if they are the same color
-    const weight = weights[color1 + color2] || weights[color2 + color1] || 0; // Default weight is 0 if color combination not defined
+    const weight = weights[color1 + color2] || 0; // Default weight is 0 if color combination not defined
 
     if (distance > 0 && distance < 50) {
-      const strength = this.baseForce * -10 / (distance * distance * distance); // all particles repel at close distances
+      const strength = this.baseForce * -50 / (distance * distance * distance); // all particles repel at close distances
     } else if (distance > 0 && distance < 500) {
       const strength = this.baseForce * weight / (distance * distance);
       const force = p5.Vector.sub(other.position, this.position);
