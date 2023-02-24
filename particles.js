@@ -21,6 +21,19 @@ class Particle {
     this.velocity.limit(5);
     this.position.add(this.velocity);
     this.acceleration.mult(0);
+    
+    // Wrap around screen edges
+    if (this.position.x > width) {
+      this.position.x = 0;
+    } else if (this.position.x < 0) {
+      this.position.x = width;
+    }
+
+    if (this.position.y > height) {
+      this.position.y = 0;
+    } else if (this.position.y < 0) {
+      this.position.y = height;
+    }
   }
 
   applyForce(force) {
