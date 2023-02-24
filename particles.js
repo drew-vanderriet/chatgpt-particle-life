@@ -55,8 +55,6 @@ class Particle {
       const force = p5.Vector.sub(other.position, this.position);
       force.setMag(strength);
       this.applyForce(force);
-      force.mult(-1);
-      other.applyForce(force);
     }
   }
   
