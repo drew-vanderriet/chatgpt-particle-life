@@ -7,14 +7,13 @@ class Particle {
     PURPLE: "purple",
   };
   
-  constructor(x, y, c, attraction, repulsion) {
+  constructor(x, y, c) {
     this.position = createVector(x, y);
     this.velocity = createVector(random(-1, 1), random(-1, 1));
     this.acceleration = createVector();
     this.color = c;
-    this.attraction = attraction;
-    this.repulsion = repulsion;
-    this.radius = 5;
+    this.radius = 15;
+    this.forceMultiplier = 3;
   }
 
   update() {
@@ -50,11 +49,11 @@ class Particle {
     const key = [color1, color2].sort().join(" + ");
     const weight = weights[key] || 0; // Default weight is 0 if color combination not defined
 
-    if (distance > 0 && distance < 100) {
+    if (distance > 0 && distance < 500) {
       const strength = weight / (distance * distance);
       const force = p5.Vector.sub(other.position, this.position);
       force.setMag(strength);
-      this.applyForce(force);
+      this.applyForce(force * this.forceMultiplier);
     }
   }
   
