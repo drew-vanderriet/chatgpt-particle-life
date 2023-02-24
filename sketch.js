@@ -16,12 +16,12 @@ function draw() {
   background(220);
 
   // Build the KD tree
-  const tree = new KDTree(particles, ['x', 'y']);
+  const tree = new KDTree(particles);
 
   // interact particles with their neighbors
   for (let i = 0; i < particles.length; i++) {
     const particle = particles[i];
-    const neighbors = tree.nearest(particle, 500, true);
+    const neighbors = tree.search(particle, 500);
 
     for (let j = 0; j < neighbors.length; j++) {
       if (particle !== neighbors[j]) {
