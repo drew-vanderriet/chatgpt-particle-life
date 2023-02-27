@@ -1,3 +1,32 @@
+// Predefined weights for each color combination
+const weights = {
+  [Particle.COLORS.RED + Particle.COLORS.RED]: random(-1, 1),
+  [Particle.COLORS.RED + Particle.COLORS.BLUE]: random(-1, 1),
+  [Particle.COLORS.RED + Particle.COLORS.DARK_GREEN]: random(-1, 1),
+  [Particle.COLORS.RED + Particle.COLORS.ORANGE]: random(-1, 1),
+  [Particle.COLORS.RED + Particle.COLORS.PURPLE]: random(-1, 1),
+  [Particle.COLORS.BLUE + Particle.COLORS.BLUE]: random(-1, 1),
+  [Particle.COLORS.BLUE + Particle.COLORS.RED]: random(-1, 1),
+  [Particle.COLORS.BLUE + Particle.COLORS.DARK_GREEN]: random(-1, 1),
+  [Particle.COLORS.BLUE + Particle.COLORS.ORANGE]: random(-1, 1),
+  [Particle.COLORS.BLUE + Particle.COLORS.PURPLE]: random(-1, 1),
+  [Particle.COLORS.DARK_GREEN + Particle.COLORS.DARK_GREEN]: random(-1, 1),
+  [Particle.COLORS.DARK_GREEN + Particle.COLORS.RED]: random(-1, 1),
+  [Particle.COLORS.DARK_GREEN + Particle.COLORS.BLUE]: random(-1, 1),
+  [Particle.COLORS.DARK_GREEN + Particle.COLORS.ORANGE]: random(-1, 1),
+  [Particle.COLORS.DARK_GREEN + Particle.COLORS.PURPLE]: random(-1, 1),
+  [Particle.COLORS.ORANGE + Particle.COLORS.ORANGE]: random(-1, 1),
+  [Particle.COLORS.ORANGE + Particle.COLORS.RED]: random(-1, 1),
+  [Particle.COLORS.ORANGE + Particle.COLORS.BLUE]: random(-1, 1),
+  [Particle.COLORS.ORANGE + Particle.COLORS.DARK_GREEN]: random(-1, 1),
+  [Particle.COLORS.ORANGE + Particle.COLORS.PURPLE]: random(-1, 1),
+  [Particle.COLORS.PURPLE + Particle.COLORS.PURPLE]: random(-1, 1),
+  [Particle.COLORS.PURPLE + Particle.COLORS.RED]: random(-1, 1),
+  [Particle.COLORS.PURPLE + Particle.COLORS.BLUE]: random(-1, 1),
+  [Particle.COLORS.PURPLE + Particle.COLORS.DARK_GREEN]: random(-1, 1),
+  [Particle.COLORS.PURPLE + Particle.COLORS.ORANGE]: random(-1, 1),
+};
+
 class Particle {
   static COLORS = {
     RED: "red",
@@ -53,35 +82,6 @@ class Particle {
     const color1 = this.color;
     const color2 = other.color;
     const distance = this.position.dist(other.position);
-
-    // Predefined weights for each color combination
-    const weights = {
-    [Particle.COLORS.RED + Particle.COLORS.RED]: random(-1, 1),
-    [Particle.COLORS.RED + Particle.COLORS.BLUE]: random(-1, 1),
-    [Particle.COLORS.RED + Particle.COLORS.DARK_GREEN]: random(-1, 1),
-    [Particle.COLORS.RED + Particle.COLORS.ORANGE]: random(-1, 1),
-    [Particle.COLORS.RED + Particle.COLORS.PURPLE]: random(-1, 1),
-    [Particle.COLORS.BLUE + Particle.COLORS.BLUE]: random(-1, 1),
-    [Particle.COLORS.BLUE + Particle.COLORS.RED]: random(-1, 1),
-    [Particle.COLORS.BLUE + Particle.COLORS.DARK_GREEN]: random(-1, 1),
-    [Particle.COLORS.BLUE + Particle.COLORS.ORANGE]: random(-1, 1),
-    [Particle.COLORS.BLUE + Particle.COLORS.PURPLE]: random(-1, 1),
-    [Particle.COLORS.DARK_GREEN + Particle.COLORS.DARK_GREEN]: random(-1, 1),
-    [Particle.COLORS.DARK_GREEN + Particle.COLORS.RED]: random(-1, 1),
-    [Particle.COLORS.DARK_GREEN + Particle.COLORS.BLUE]: random(-1, 1),
-    [Particle.COLORS.DARK_GREEN + Particle.COLORS.ORANGE]: random(-1, 1),
-    [Particle.COLORS.DARK_GREEN + Particle.COLORS.PURPLE]: random(-1, 1),
-    [Particle.COLORS.ORANGE + Particle.COLORS.ORANGE]: random(-1, 1),
-    [Particle.COLORS.ORANGE + Particle.COLORS.RED]: random(-1, 1),
-    [Particle.COLORS.ORANGE + Particle.COLORS.BLUE]: random(-1, 1),
-    [Particle.COLORS.ORANGE + Particle.COLORS.DARK_GREEN]: random(-1, 1),
-    [Particle.COLORS.ORANGE + Particle.COLORS.PURPLE]: random(-1, 1),
-    [Particle.COLORS.PURPLE + Particle.COLORS.PURPLE]: random(-1, 1),
-    [Particle.COLORS.PURPLE + Particle.COLORS.RED]: random(-1, 1),
-    [Particle.COLORS.PURPLE + Particle.COLORS.BLUE]: random(-1, 1),
-    [Particle.COLORS.PURPLE + Particle.COLORS.DARK_GREEN]: random(-1, 1),
-    [Particle.COLORS.PURPLE + Particle.COLORS.ORANGE]: random(-1, 1),
-  };
 
     // Get the weight for the combination of colors, or if they are the same color
     const weight = weights[color1 + color2] || 0; // Default weight is 0 if color combination not defined
