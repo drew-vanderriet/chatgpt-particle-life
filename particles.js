@@ -76,6 +76,12 @@ class Particle {
       const strength = this.baseForce * weight / (distance * distance);
       const force = p5.Vector.sub(other.position, this.position);
       force.setMag(strength);
+      
+      // Wrap the force around the screen
+      const forceX = force.x > 0 ? force.x % width : width - ((-force.x) % width);
+      const forceY = force.y > 0 ? force.y % height : height - ((-force.y) % height);
+      force.set(forceX, forceY);
+      
       this.applyForce(force);
     }
   }
