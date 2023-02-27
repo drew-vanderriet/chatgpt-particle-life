@@ -92,7 +92,7 @@ class Particle {
       force.setMag(strength);
       this.applyForce(force);
     } else if (distance > 0 && distance < 500) {
-      const strength = this.baseForce * weight / (distance * distance);
+      const strength = this.baseForce * weight / (distance);
       const force = p5.Vector.sub(other.position, this.position);
       force.setMag(strength);
       this.applyForce(force);
