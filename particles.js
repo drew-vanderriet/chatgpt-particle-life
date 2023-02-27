@@ -75,7 +75,7 @@ class Particle {
     [Particle.COLORS.ORANGE + Particle.COLORS.RED]: -0.7,
     [Particle.COLORS.ORANGE + Particle.COLORS.BLUE]: -0.2,
     [Particle.COLORS.ORANGE + Particle.COLORS.DARK_GREEN]: 0.1,
-    [Particle.COLORS.ORANGE + Particle.COLORS.PURPLE]: 0.1,
+    [Particle.COLORS.ORANGE + Particle.COLORS.PURPLE]: 0.8,
     [Particle.COLORS.PURPLE + Particle.COLORS.PURPLE]: 0.3,
     [Particle.COLORS.PURPLE + Particle.COLORS.RED]: -0.5,
     [Particle.COLORS.PURPLE + Particle.COLORS.BLUE]: -0.8,
