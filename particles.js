@@ -49,16 +49,16 @@ class Particle {
   applyForce(force) {
     this.acceleration.add(force);
   }
-
+  
   interact(other) {
     const color1 = this.color;
     const color2 = other.color;
     const dx = other.position.x - this.position.x;
     const dy = other.position.y - this.position.y;
 
-    // Wrap distances around screen edges
-    const wrappedDx = dx > width / 2 ? dx - width : dx < -width / 2 ? dx + width : dx;
-    const wrappedDy = dy > height / 2 ? dy - height : dy < -height / 2 ? dy + height : dy;
+    // Calculate wrapped distances
+    const wrappedDx = wrapDistance(dx, width);
+    const wrappedDy = wrapDistance(dy, height);
     const wrappedDistance = sqrt(wrappedDx * wrappedDx + wrappedDy * wrappedDy);
 
     // Get the weight for the combination of colors, or if they are the same color
@@ -66,15 +66,38 @@ class Particle {
 
     if (wrappedDistance > 0 && wrappedDistance < 50) {
       const strength = this.baseForce * this.repulsiveWeight / (wrappedDistance * wrappedDistance * wrappedDistance); // all particles repel at close distances
+
+      // Calculate wrapped force vector
       const force = createVector(wrappedDx, wrappedDy);
+      if (abs(dx) > width / 2) {
+        force.x -= width * Math.sign(dx);
+      }
+      if (abs(dy) > height / 2) {
+        force.y -= height * Math.sign(dy);
+      }
       force.setMag(strength);
       this.applyForce(force);
     } else if (wrappedDistance > 0 && wrappedDistance < 500) {
       const strength = this.baseForce * weight / (wrappedDistance * wrappedDistance);
+
+      // Calculate wrapped force vector
       const force = createVector(wrappedDx, wrappedDy);
+      if (abs(dx) > width / 2) {
+        force.x -= width * Math.sign(dx);
+      }
+      if (abs(dy) > height / 2) {
+        force.y -= height * Math.sign(dy);
+      }
       force.setMag(strength);
       this.applyForce(force);
     }
+  }
+
+  function wrapDistance(distance, bound) {
+    if (abs(distance) > bound / 2) {
+      return distance > 0 ? distance - bound : distance + bound;
+    }
+    return distance;
   }
   
   paintColor() {
