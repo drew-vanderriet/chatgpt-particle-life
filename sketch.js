@@ -2,20 +2,8 @@ let particles = [];
 let weights;
 let maxForceDistance = 500;
 let numberOfParticles = 300;
-
-function resetSimulation() {
-  particles = [];
-  maxForceDistance = document.getElementById("maxForceDistance").value;
-  numberOfParticles = document.getElementById("numberOfParticles").value;
-
-  for (let i = 0; i < numberOfParticles; i++) {
-    let x = random(width);
-    let y = random(height);
-    let randomColor = random(Object.values(Particle.COLORS));
-    let particle = new Particle(x, y, randomColor, weights, maxForceDistance);
-    particles.push(particle);
-  }
-}
+let repulsiveWeight = -1;
+let tooCloseDistance = 50;
 
 function updateNumberOfParticles() {
   numberOfParticles = document.getElementById("numberOfParticles").value;
@@ -25,6 +13,28 @@ function updateNumberOfParticles() {
 function updateMaxForceDistance() {
   maxForceDistance = document.getElementById("maxForceDistance").value;
   resetSimulation();
+}
+
+function updateRepulsiveWeight() {
+  repulsiveWeight = document.getElementById("repulsiveWeight").value;
+  resetSimulation();
+}
+
+function updateTooCloseDistance() {
+  tooCloseDistance = document.getElementById("tooCloseDistance").value;
+  resetSimulation();
+}
+
+function resetSimulation() {
+  particles = [];
+
+  for (let i = 0; i < numberOfParticles; i++) {
+    let x = random(width);
+    let y = random(height);
+    let randomColor = random(Object.values(Particle.COLORS));
+    let particle = new Particle(x, y, randomColor, weights, maxForceDistance, repulsiveWeight, tooCloseDistance);
+    particles.push(particle);
+  }
 }
 
 function setup() {
@@ -64,7 +74,7 @@ function setup() {
     let x = random(width);
     let y = random(height);
     let randomColor = random(Object.values(Particle.COLORS));
-    let particle = new Particle(x, y, randomColor, weights, maxForceDistance);
+    let particle = new Particle(x, y, randomColor, weights, maxForceDistance, repulsiveWeight, tooCloseDistance);
     particles.push(particle);
   }
 }
