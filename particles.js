@@ -8,11 +8,8 @@ class Particle {
   };
   
   static wrapDistance(position1, position2) {
-    const dx = position2.x - position1.x;
-    const dy = position2.y - position1.y;
-
-    const wrappedDx = dx > width / 2 ? dx - width : dx < -width / 2 ? dx + width : dx;
-    const wrappedDy = dy > height / 2 ? dy - height : dy < -height / 2 ? dy + height : dy;
+    const wrappedDx = Particle.wrappedDiff(position1, position2, 0) // 0 is the x axis
+    const wrappedDy = Particle.wrappedDiff(position1, position2, 1) // 1 is the y axis
     const wrappedDistance = sqrt(wrappedDx * wrappedDx + wrappedDy * wrappedDy);
 
     return {
@@ -20,6 +17,16 @@ class Particle {
       wrappedDx,
       wrappedDy
     };
+  }
+  
+  static wrappedDiff(position1, postion2, axis) {
+    if (axis == 0) {
+      const dx = position2.x - position1.x;
+      return dx > width / 2 ? dx - width : dx < -width / 2 ? dx + width : dx;
+    } else if (axis == 1) {
+      const dy = position2.y - position1.y;
+      return dy > height / 2 ? dy - height : dy < -height / 2 ? dy + height : dy;
+    }
   }
   
   constructor(x, y, c, weights, maxForceDistance) {
@@ -70,7 +77,7 @@ class Particle {
   interact(other) {
     const color1 = this.color;
     const color2 = other.color;
-    const { wrappedDistance, wrappedDx, wrappedDy } = Particle.wrapDistance(this, other);
+    const { wrappedDistance, wrappedDx, wrappedDy } = Particle.wrapDistance(this.position, other.position);
 
     // Get the weight for the combination of colors, or if they are the same color
     const weight = this.weights[color1 + color2] || 0; // Default weight is 0 if color combination not defined
@@ -91,13 +98,6 @@ class Particle {
       force.setMag(strength);
       this.applyForce(force);
     }
-  }
-
-  wrapDistance(distance, bound) {
-    if (abs(distance) > bound / 2) {
-      return distance > 0 ? distance - bound : distance + bound;
-    }
-    return distance;
   }
   
   paintColor() {
