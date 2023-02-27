@@ -23,6 +23,10 @@
         <input type="number" id="numberOfParticles" name="numberOfParticles" min="1" max="1000" value="300" onchange="updateNumberOfParticles()">
         <label for="maxForceDistance">Max force distance:</label>
         <input type="number" id="maxForceDistance" name="maxForceDistance" min="1" max="1000" value="500" onchange="updateMaxForceDistance()">
+        <label for="repulsiveWeight">Repulsive force weight:</label>
+        <input type="number" id="repulsiveWeight" name="repulsiveWeight" min="-10" max="-0.1" value="-1" onchange="updateRepulsiveWeight()">
+        <label for="tooCloseDistance">Repuslive force distance:</label>
+        <input type="number" id="tooCloseDistance" name="tooCloseDistance" min="1" max="1000" value="50" onchange="updateTooCloseDistance()">
     </div>
 </body>
 </html>
