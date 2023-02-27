@@ -15,7 +15,7 @@ class Particle {
     this.weights = weights;
     this.radius = 10;
     this.baseForce = 10000;
-    this.repulsiveWeight = -0.8;
+    this.repulsiveWeight = -1;
   }
   
   pos(axis) {
