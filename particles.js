@@ -16,6 +16,8 @@ class Particle {
     this.radius = 10;
     this.baseForce = 10000;
     this.repulsiveWeight = -1;
+    this.tooCloseDistance = 50;
+    this.maxForceDistance = 500;
   }
   
   pos(axis) {
@@ -64,30 +66,19 @@ class Particle {
     // Get the weight for the combination of colors, or if they are the same color
     const weight = this.weights[color1 + color2] || 0; // Default weight is 0 if color combination not defined
 
-    if (wrappedDistance > 0 && wrappedDistance < 50) {
-      const strength = this.baseForce * this.repulsiveWeight / (wrappedDistance * wrappedDistance * wrappedDistance); // all particles repel at close distances
+    // particles too close, the repulsive force takes over
+    if (wrappedDistance > 0 && wrappedDistance < this.tooCloseDistance) {
+      const strength = this.baseForce * this.repulsiveWeight / (wrappedDistance * wrappedDistance * wrappedDistance);
 
       // Calculate wrapped force vector
       const force = createVector(wrappedDx, wrappedDy);
-      if (abs(dx) > width / 2) {
-        force.x -= width * Math.sign(dx);
-      }
-      if (abs(dy) > height / 2) {
-        force.y -= height * Math.sign(dy);
-      }
       force.setMag(strength);
       this.applyForce(force);
-    } else if (wrappedDistance > 0 && wrappedDistance < 500) {
+    } else if (wrappedDistance < this.maxForceDistance) { // only calculate standard particle simulation outside of "too close" threshold
       const strength = this.baseForce * weight / (wrappedDistance * wrappedDistance);
 
       // Calculate wrapped force vector
       const force = createVector(wrappedDx, wrappedDy);
-      if (abs(dx) > width / 2) {
-        force.x -= width * Math.sign(dx);
-      }
-      if (abs(dy) > height / 2) {
-        force.y -= height * Math.sign(dy);
-      }
       force.setMag(strength);
       this.applyForce(force);
     }
