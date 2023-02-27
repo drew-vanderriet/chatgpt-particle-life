@@ -1,5 +1,6 @@
 let particles = [];
 let weights;
+let maxForceDistances = 500;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -38,13 +39,13 @@ function setup() {
 //     let x = random(width);
 //     let y = random(height);
 //     let randomColor = random(Object.values(Particle.COLORS));
-//     let particle = new Particle(x, y, randomColor, weights);
+//     let particle = new Particle(x, y, randomColor, weights, maxForceDistance);
 //     particles.push(particle);
 //   }
-  particle1 = new Particle(50, 300, Particle.COLORS.RED, weights);
-  particle2 = new Particle(width - 50, 300, Particle.COLORS.RED, weights);
-  particle3 = new Particle(1000, 20, Particle.COLORS.RED, weights);
-  particle4 = new Particle(1000, height - 20, Particle.COLORS.RED, weights);
+  particle1 = new Particle(50, 300, Particle.COLORS.RED, weights, maxForceDistance);
+  particle2 = new Particle(width - 50, 300, Particle.COLORS.RED, weights, maxForceDistance);
+  particle3 = new Particle(1000, 20, Particle.COLORS.RED, weights, maxForceDistance);
+  particle4 = new Particle(1000, height - 20, Particle.COLORS.RED, weights, maxForceDistance);
   
   particles.push(particle1);
   particles.push(particle2);
@@ -61,7 +62,7 @@ function draw() {
   // interact particles with their neighbors
   for (let i = 0; i < particles.length; i++) {
     const particle = particles[i];
-    const neighbors = tree.search(particle, 500);
+    const neighbors = tree.search(particle, maxForceDistance);
 
     for (let j = 0; j < neighbors.length; j++) {
       if (particle !== neighbors[j]) {
