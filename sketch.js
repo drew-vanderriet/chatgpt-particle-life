@@ -1,6 +1,6 @@
 let particles = [];
 let weights;
-let maxForceDistances = 500;
+let maxForceDistance = 500;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
