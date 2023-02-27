@@ -53,35 +53,26 @@ class Particle {
   interact(other) {
     const color1 = this.color;
     const color2 = other.color;
-    const dx = abs(this.position.x - other.position.x);
-    const dy = abs(this.position.y - other.position.y);
+    const dx = other.position.x - this.position.x;
+    const dy = other.position.y - this.position.y;
 
-    // Calculate wrapped distance
-    let distance = p5.Vector.dist(this.position, other.position);
-    if (dx > width/2) {
-      distance = p5.Vector.dist(this.position, createVector(other.position.x + width, other.position.y));
-    } else if (dy > height/2) {
-      distance = p5.Vector.dist(this.position, createVector(other.position.x, other.position.y + height));
-    }
+    // Wrap distances around screen edges
+    const wrappedDx = dx > width / 2 ? dx - width : dx < -width / 2 ? dx + width : dx;
+    const wrappedDy = dy > height / 2 ? dy - height : dy < -height / 2 ? dy + height : dy;
+    const wrappedDistance = sqrt(wrappedDx * wrappedDx + wrappedDy * wrappedDy);
 
     // Get the weight for the combination of colors, or if they are the same color
     const weight = this.weights[color1 + color2] || 0; // Default weight is 0 if color combination not defined
 
-    if (distance > 0 && distance < 50) {
-      const strength = this.baseForce * this.repulsiveWeight / (distance * distance * distance); // all particles repel at close distances
-      const force = p5.Vector.sub(other.position, this.position);
+    if (wrappedDistance > 0 && wrappedDistance < 50) {
+      const strength = this.baseForce * this.repulsiveWeight / (wrappedDistance * wrappedDistance * wrappedDistance); // all particles repel at close distances
+      const force = createVector(wrappedDx, wrappedDy);
       force.setMag(strength);
       this.applyForce(force);
-    } else if (distance > 0 && distance < 500) {
-      const strength = this.baseForce * weight / (distance * distance);
-      const force = p5.Vector.sub(other.position, this.position);
+    } else if (wrappedDistance > 0 && wrappedDistance < 500) {
+      const strength = this.baseForce * weight / (wrappedDistance * wrappedDistance);
+      const force = createVector(wrappedDx, wrappedDy);
       force.setMag(strength);
-      
-      // Wrap the force around the screen
-      const forceX = force.x > 0 ? force.x % width : width - ((-force.x) % width);
-      const forceY = force.y > 0 ? force.y % height : height - ((-force.y) % height);
-      force.set(forceX, forceY);
-      
       this.applyForce(force);
     }
   }
