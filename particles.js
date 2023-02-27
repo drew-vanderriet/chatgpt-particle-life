@@ -29,7 +29,7 @@ class Particle {
     }
   }
   
-  constructor(x, y, c, weights, maxForceDistance) {
+  constructor(x, y, c, weights, maxForceDistance, repulsiveWeight, tooCloseDistance) {
     this.position = createVector(x, y);
     this.velocity = createVector(random(-10, 10), random(-10, 10));
     this.acceleration = createVector();
@@ -37,9 +37,9 @@ class Particle {
     this.weights = weights;
     this.radius = 10;
     this.baseForce = 10000;
-    this.repulsiveWeight = -1;
-    this.tooCloseDistance = 50;
     this.maxForceDistance = maxForceDistance;
+    this.repulsiveWeight = repulsiveWeight;
+    this.tooCloseDistance = tooCloseDistance;
   }
   
   pos(axis) {
