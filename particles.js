@@ -1,32 +1,3 @@
-// Predefined weights for each color combination
-const weights = {
-  [Particle.COLORS.RED + Particle.COLORS.RED]: random(-1, 1),
-  [Particle.COLORS.RED + Particle.COLORS.BLUE]: random(-1, 1),
-  [Particle.COLORS.RED + Particle.COLORS.DARK_GREEN]: random(-1, 1),
-  [Particle.COLORS.RED + Particle.COLORS.ORANGE]: random(-1, 1),
-  [Particle.COLORS.RED + Particle.COLORS.PURPLE]: random(-1, 1),
-  [Particle.COLORS.BLUE + Particle.COLORS.BLUE]: random(-1, 1),
-  [Particle.COLORS.BLUE + Particle.COLORS.RED]: random(-1, 1),
-  [Particle.COLORS.BLUE + Particle.COLORS.DARK_GREEN]: random(-1, 1),
-  [Particle.COLORS.BLUE + Particle.COLORS.ORANGE]: random(-1, 1),
-  [Particle.COLORS.BLUE + Particle.COLORS.PURPLE]: random(-1, 1),
-  [Particle.COLORS.DARK_GREEN + Particle.COLORS.DARK_GREEN]: random(-1, 1),
-  [Particle.COLORS.DARK_GREEN + Particle.COLORS.RED]: random(-1, 1),
-  [Particle.COLORS.DARK_GREEN + Particle.COLORS.BLUE]: random(-1, 1),
-  [Particle.COLORS.DARK_GREEN + Particle.COLORS.ORANGE]: random(-1, 1),
-  [Particle.COLORS.DARK_GREEN + Particle.COLORS.PURPLE]: random(-1, 1),
-  [Particle.COLORS.ORANGE + Particle.COLORS.ORANGE]: random(-1, 1),
-  [Particle.COLORS.ORANGE + Particle.COLORS.RED]: random(-1, 1),
-  [Particle.COLORS.ORANGE + Particle.COLORS.BLUE]: random(-1, 1),
-  [Particle.COLORS.ORANGE + Particle.COLORS.DARK_GREEN]: random(-1, 1),
-  [Particle.COLORS.ORANGE + Particle.COLORS.PURPLE]: random(-1, 1),
-  [Particle.COLORS.PURPLE + Particle.COLORS.PURPLE]: random(-1, 1),
-  [Particle.COLORS.PURPLE + Particle.COLORS.RED]: random(-1, 1),
-  [Particle.COLORS.PURPLE + Particle.COLORS.BLUE]: random(-1, 1),
-  [Particle.COLORS.PURPLE + Particle.COLORS.DARK_GREEN]: random(-1, 1),
-  [Particle.COLORS.PURPLE + Particle.COLORS.ORANGE]: random(-1, 1),
-};
-
 class Particle {
   static COLORS = {
     RED: "red",
@@ -34,6 +5,35 @@ class Particle {
     DARK_GREEN: "dark green",
     ORANGE: "orange",
     PURPLE: "purple",
+  };
+  
+  // Predefined weights for each color combination
+  static WEIGHTS = {
+    [Particle.COLORS.RED + Particle.COLORS.RED]: random(-1, 1),
+    [Particle.COLORS.RED + Particle.COLORS.BLUE]: random(-1, 1),
+    [Particle.COLORS.RED + Particle.COLORS.DARK_GREEN]: random(-1, 1),
+    [Particle.COLORS.RED + Particle.COLORS.ORANGE]: random(-1, 1),
+    [Particle.COLORS.RED + Particle.COLORS.PURPLE]: random(-1, 1),
+    [Particle.COLORS.BLUE + Particle.COLORS.BLUE]: random(-1, 1),
+    [Particle.COLORS.BLUE + Particle.COLORS.RED]: random(-1, 1),
+    [Particle.COLORS.BLUE + Particle.COLORS.DARK_GREEN]: random(-1, 1),
+    [Particle.COLORS.BLUE + Particle.COLORS.ORANGE]: random(-1, 1),
+    [Particle.COLORS.BLUE + Particle.COLORS.PURPLE]: random(-1, 1),
+    [Particle.COLORS.DARK_GREEN + Particle.COLORS.DARK_GREEN]: random(-1, 1),
+    [Particle.COLORS.DARK_GREEN + Particle.COLORS.RED]: random(-1, 1),
+    [Particle.COLORS.DARK_GREEN + Particle.COLORS.BLUE]: random(-1, 1),
+    [Particle.COLORS.DARK_GREEN + Particle.COLORS.ORANGE]: random(-1, 1),
+    [Particle.COLORS.DARK_GREEN + Particle.COLORS.PURPLE]: random(-1, 1),
+    [Particle.COLORS.ORANGE + Particle.COLORS.ORANGE]: random(-1, 1),
+    [Particle.COLORS.ORANGE + Particle.COLORS.RED]: random(-1, 1),
+    [Particle.COLORS.ORANGE + Particle.COLORS.BLUE]: random(-1, 1),
+    [Particle.COLORS.ORANGE + Particle.COLORS.DARK_GREEN]: random(-1, 1),
+    [Particle.COLORS.ORANGE + Particle.COLORS.PURPLE]: random(-1, 1),
+    [Particle.COLORS.PURPLE + Particle.COLORS.PURPLE]: random(-1, 1),
+    [Particle.COLORS.PURPLE + Particle.COLORS.RED]: random(-1, 1),
+    [Particle.COLORS.PURPLE + Particle.COLORS.BLUE]: random(-1, 1),
+    [Particle.COLORS.PURPLE + Particle.COLORS.DARK_GREEN]: random(-1, 1),
+    [Particle.COLORS.PURPLE + Particle.COLORS.ORANGE]: random(-1, 1),
   };
   
   constructor(x, y, c) {
@@ -84,7 +84,7 @@ class Particle {
     const distance = this.position.dist(other.position);
 
     // Get the weight for the combination of colors, or if they are the same color
-    const weight = weights[color1 + color2] || 0; // Default weight is 0 if color combination not defined
+    const weight = WEIGHTS[color1 + color2] || 0; // Default weight is 0 if color combination not defined
 
     if (distance > 0 && distance < 50) {
       const strength = this.baseForce * this.repulsiveWeight / (distance * distance * distance); // all particles repel at close distances
