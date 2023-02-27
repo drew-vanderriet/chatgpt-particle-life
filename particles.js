@@ -7,6 +7,21 @@ class Particle {
     PURPLE: "purple",
   };
   
+  static wrapDistance(position1, position2) {
+    const dx = position2.x - position1.x;
+    const dy = position2.y - position1.y;
+
+    const wrappedDx = dx > width / 2 ? dx - width : dx < -width / 2 ? dx + width : dx;
+    const wrappedDy = dy > height / 2 ? dy - height : dy < -height / 2 ? dy + height : dy;
+    const wrappedDistance = sqrt(wrappedDx * wrappedDx + wrappedDy * wrappedDy);
+
+    return {
+      wrappedDistance,
+      wrappedDx,
+      wrappedDy
+    };
+  }
+  
   constructor(x, y, c, weights, maxForceDistance) {
     this.position = createVector(x, y);
     this.velocity = createVector(random(-10, 10), random(-10, 10));
@@ -55,13 +70,7 @@ class Particle {
   interact(other) {
     const color1 = this.color;
     const color2 = other.color;
-    const dx = other.position.x - this.position.x;
-    const dy = other.position.y - this.position.y;
-
-    // Calculate wrapped distances
-    const wrappedDx = this.wrapDistance(dx, width);
-    const wrappedDy = this.wrapDistance(dy, height);
-    const wrappedDistance = sqrt(wrappedDx * wrappedDx + wrappedDy * wrappedDy);
+    const { wrappedDistance, wrappedDx, wrappedDy } = Particle.wrapDistance(this, other);
 
     // Get the weight for the combination of colors, or if they are the same color
     const weight = this.weights[color1 + color2] || 0; // Default weight is 0 if color combination not defined
