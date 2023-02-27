@@ -19,7 +19,7 @@ class Particle {
     };
   }
   
-  static wrappedDiff(position1, postion2, axis) {
+  static wrappedDiff(position1, position2, axis) {
     if (axis == 0) {
       const dx = position2.x - position1.x;
       return dx > width / 2 ? dx - width : dx < -width / 2 ? dx + width : dx;
