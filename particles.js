@@ -53,7 +53,16 @@ class Particle {
   interact(other) {
     const color1 = this.color;
     const color2 = other.color;
-    const distance = this.position.dist(other.position);
+    const dx = abs(this.position.x - other.position.x);
+    const dy = abs(this.position.y - other.position.y);
+
+    // Calculate wrapped distance
+    let distance = p5.Vector.dist(this.position, other.position);
+    if (dx > width/2) {
+      distance = p5.Vector.dist(this.position, createVector(other.position.x + width, other.position.y));
+    } else if (dy > height/2) {
+      distance = p5.Vector.dist(this.position, createVector(other.position.x, other.position.y + height));
+    }
 
     // Get the weight for the combination of colors, or if they are the same color
     const weight = this.weights[color1 + color2] || 0; // Default weight is 0 if color combination not defined
