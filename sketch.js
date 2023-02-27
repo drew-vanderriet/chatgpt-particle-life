@@ -35,22 +35,23 @@ function setup() {
   };
   
   // Add 50 red particles at random locations
-//   for (let i = 0; i < 150; i++) {
-//     let x = random(width);
-//     let y = random(height);
-//     let randomColor = random(Object.values(Particle.COLORS));
-//     let particle = new Particle(x, y, randomColor, weights, maxForceDistance);
-//     particles.push(particle);
-//   }
-  particle1 = new Particle(50, 300, Particle.COLORS.RED, weights, maxForceDistance);
-  particle2 = new Particle(width - 50, 300, Particle.COLORS.RED, weights, maxForceDistance);
-  particle3 = new Particle(1000, 20, Particle.COLORS.RED, weights, maxForceDistance);
-  particle4 = new Particle(1000, height - 20, Particle.COLORS.RED, weights, maxForceDistance);
+  for (let i = 0; i < 150; i++) {
+    let x = random(width);
+    let y = random(height);
+    let randomColor = random(Object.values(Particle.COLORS));
+    let particle = new Particle(x, y, randomColor, weights, maxForceDistance);
+    particles.push(particle);
+  }
   
-  particles.push(particle1);
-  particles.push(particle2);
-  particles.push(particle3);
-  particles.push(particle4);
+//   particle1 = new Particle(50, 300, Particle.COLORS.RED, weights, maxForceDistance);
+//   particle2 = new Particle(width - 50, 300, Particle.COLORS.RED, weights, maxForceDistance);
+//   particle3 = new Particle(1000, 20, Particle.COLORS.RED, weights, maxForceDistance);
+//   particle4 = new Particle(1000, height - 20, Particle.COLORS.RED, weights, maxForceDistance);
+  
+//   particles.push(particle1);
+//   particles.push(particle2);
+//   particles.push(particle3);
+//   particles.push(particle4);
 }
 
 function draw() {
