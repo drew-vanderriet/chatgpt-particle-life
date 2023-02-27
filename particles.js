@@ -57,8 +57,8 @@ class Particle {
     const dy = other.position.y - this.position.y;
 
     // Calculate wrapped distances
-    const wrappedDx = wrapDistance(dx, width);
-    const wrappedDy = wrapDistance(dy, height);
+    const wrappedDx = this.wrapDistance(dx, width);
+    const wrappedDy = this.wrapDistance(dy, height);
     const wrappedDistance = sqrt(wrappedDx * wrappedDx + wrappedDy * wrappedDy);
 
     // Get the weight for the combination of colors, or if they are the same color
@@ -93,7 +93,7 @@ class Particle {
     }
   }
 
-  function wrapDistance(distance, bound) {
+  wrapDistance(distance, bound) {
     if (abs(distance) > bound / 2) {
       return distance > 0 ? distance - bound : distance + bound;
     }
