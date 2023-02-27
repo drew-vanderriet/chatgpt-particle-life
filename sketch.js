@@ -25,22 +25,8 @@ function updateTooCloseDistance() {
   resetSimulation();
 }
 
-function resetSimulation() {
-  particles = [];
-
-  for (let i = 0; i < numberOfParticles; i++) {
-    let x = random(width);
-    let y = random(height);
-    let randomColor = random(Object.values(Particle.COLORS));
-    let particle = new Particle(x, y, randomColor, weights, maxForceDistance, repulsiveWeight, tooCloseDistance);
-    particles.push(particle);
-  }
-}
-
-function setup() {
-  createCanvas(windowWidth, windowHeight);
-  
-  // Predefined weights for each color combination
+function randomizeWeights() {
+  // Randomly define weights for each color combination
   weights = {
     [Particle.COLORS.RED + Particle.COLORS.RED]: random(-1, 1),
     [Particle.COLORS.RED + Particle.COLORS.BLUE]: random(-1, 1),
@@ -68,6 +54,24 @@ function setup() {
     [Particle.COLORS.PURPLE + Particle.COLORS.DARK_GREEN]: random(-1, 1),
     [Particle.COLORS.PURPLE + Particle.COLORS.ORANGE]: random(-1, 1),
   };
+}
+
+function resetSimulation() {
+  particles = [];
+
+  for (let i = 0; i < numberOfParticles; i++) {
+    let x = random(width);
+    let y = random(height);
+    let randomColor = random(Object.values(Particle.COLORS));
+    let particle = new Particle(x, y, randomColor, weights, maxForceDistance, repulsiveWeight, tooCloseDistance);
+    particles.push(particle);
+  }
+}
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  
+  randomizeWeights();
   
   // Add 50 red particles at random locations
   for (let i = 0; i < numberOfParticles; i++) {
