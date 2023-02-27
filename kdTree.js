@@ -19,7 +19,7 @@ class KDTree {
 
     const axis = depth % 2;
 
-    points.sort((a, b) => a.pos(axis) - b.pos(axis));
+    points.sort((a, b) => Particle.wrappedDiff(a, b, axis));
 
     const medianIndex = Math.floor(points.length / 2);
     const median = points[medianIndex];
@@ -42,21 +42,21 @@ class KDTree {
     if (node === null) {
       return;
     }
+    
+    const { wrappedDistance, wrappedDx, wrappedDy } = Particle.wrapDistance(point, node.point);
 
-    const distance = point.position.dist(node.point.position);
-
-    if (distance <= radius) {
+    if (wrappedDistance <= radius) {
       neighbors.push(node.point);
     }
 
     const axis = depth % 2;
-    const diff = point.pos(axis) - node.point.pos(axis);
+    const wrappedDiff = Particle.wrappedDiff(point, node.point, axis)
 
-    if (diff <= radius) {
+    if (wrappedDiff <= radius) {
       this.searchHelper(point, node.left, depth + 1, radius, neighbors);
     }
 
-    if (diff >= -radius) {
+    if (wrappedDiff >= -radius) {
       this.searchHelper(point, node.right, depth + 1, radius, neighbors);
     }
   }
