@@ -6,54 +6,11 @@
     <!-- Add the p5.js library from a CDN -->
     <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0"></script>
     <!-- Particle simulation code -->
-    <script src="particles.js"></script>
-    <script src="sketch.js"></script>
-    <script src="kdTree.js"></script>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-        }
-        .weights-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            grid-template-rows: repeat(5, 1fr);
-            gap: 5px;
-            margin-top: 50px;
-        }
-        .weights-grid-cell {
-            background-color: #ddd;
-            border: 1px solid #666;
-            padding: 10px;
-            font-size: 20px;
-            font-weight: bold;
-            text-align: center;
-            color: #666;
-            cursor: pointer;
-        }
-        .weights-grid-cell:hover {
-            background-color: #bbb;
-        }
-        .weights-grid-cell.active {
-            background-color: #bbb;
-        }
-        .weights-grid-row-label {
-            font-size: 20px;
-            font-weight: bold;
-            text-align: center;
-            color: #666;
-            margin-top: -20px;
-        }
-        .weights-grid-column-label {
-            font-size: 20px;
-            font-weight: bold;
-            text-align: center;
-            color: #666;
-            margin-left: -20px;
-            writing-mode: vertical-rl;
-            transform: rotate(180deg);
-        }
-    </style>
+    <script src="js/particles.js"></script>
+    <script src="js/sketch.js"></script>
+    <script src="js/kdTree.js"></script>
+    <!-- Add the CSS file -->
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <body>
     <div style="position: absolute; top: 0; left: 0; right: 0; padding: 10px; background-color: #eee;">
